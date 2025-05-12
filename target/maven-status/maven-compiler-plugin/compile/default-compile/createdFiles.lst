@@ -2,5 +2,6 @@ com\czrbyn\lifestealCore\data\HeartsData.class
 com\czrbyn\lifestealCore\listeners\PlayerJoinListener.class
 com\czrbyn\lifestealCore\utils\ColorUtils.class
 com\czrbyn\lifestealCore\config\ConfigHandler.class
+com\czrbyn\lifestealCore\listeners\PlayerRespawnListener.class
 com\czrbyn\lifestealCore\LifestealCore.class
 com\czrbyn\lifestealCore\listeners\PlayerKillDeathListener.class

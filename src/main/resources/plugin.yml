@@ -2,3 +2,12 @@ name: LifestealCore
 version: '1'
 main: com.czrbyn.lifestealCore.LifestealCore
 api-version: '1.21'
+commands:
+  lifestealcore:
+    aliases:
+      - lscore
+      - lifecore
+      - lifesteal
+      - lcore
+    description: Main commmand for LifestealCore
+    usage: /lifestealcore

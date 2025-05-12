@@ -16,6 +16,11 @@ public class ConfigHandler {
         cfg = lCore.getConfig();
     }
 
+    public void reload() {
+        lCore.saveConfig();
+        cfg = lCore.getConfig();
+    }
+
     public int getMaxHearts() {
         if (cfg.get("maxHearts") != null) {
             return cfg.getInt("maxHearts");

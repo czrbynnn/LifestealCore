@@ -31,6 +31,20 @@ public class HeartsData {
 
     }
 
+    public void reload() {
+        f = new File(lCore.getDataFolder(), "hearts.yml");
+        cfg = YamlConfiguration.loadConfiguration(f);
+
+        if (!f.exists()) {
+            lCore.getLogger().severe("[LifestealCore] HEARTS.YML DOES NOT EXIST.");
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public int getHearts(Player p) {
         if (cfg.get(p.getUniqueId() + ".hearts") != null) {
             return cfg.getInt(p.getUniqueId() + ".hearts");

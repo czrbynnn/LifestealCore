@@ -1,5 +1,7 @@
 package com.czrbyn.lifestealCore;
 
+import com.czrbyn.lifestealCore.commands.MainCommandClass;
+import com.czrbyn.lifestealCore.commands.subcommands.ReloadSubCommand;
 import com.czrbyn.lifestealCore.config.ConfigHandler;
 import com.czrbyn.lifestealCore.data.HeartsData;
 import com.czrbyn.lifestealCore.listeners.PlayerJoinListener;
@@ -18,6 +20,10 @@ public final class LifestealCore extends JavaPlugin {
     private PlayerKillDeathListener pkdl;
     private PlayerRespawnListener prl;
 
+    private MainCommandClass mcc;
+
+    private ReloadSubCommand rsc;
+
     @Override
     public void onEnable() {
         instance = this;
@@ -29,6 +35,8 @@ public final class LifestealCore extends JavaPlugin {
         saveDefaultConfig();
 
         registerListeners();
+
+        registerCommands();
 
     }
 
@@ -49,7 +57,10 @@ public final class LifestealCore extends JavaPlugin {
     }
 
     public void registerCommands() {
+        mcc = new MainCommandClass();
+        getCommand("lifestealcore").setExecutor(mcc);
 
+        rsc = new ReloadSubCommand();
     }
 
     public static LifestealCore getInstance() {
@@ -63,4 +74,6 @@ public final class LifestealCore extends JavaPlugin {
     public HeartsData gethData() {
         return hData;
     }
+
+    public ReloadSubCommand getRsc() { return rsc; }
 }
