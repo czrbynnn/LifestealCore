@@ -26,8 +26,6 @@ public class PlayerKillDeathListener implements Listener {
             Player died = e.getEntity();
             Player killer = (Player) died.getLastDamageCause().getEntity();
 
-            died.getAttribute(Attribute.GENERIC_MAX_HEALTH)
-
             int hearts = cH.getHeartsPerKill();
 
             if (hData.getHearts(died) == hearts) {
@@ -36,6 +34,17 @@ public class PlayerKillDeathListener implements Listener {
                 }
             } else {
                 hData.removeHearts(died, hearts);
+                if (lCore.getConfig().get("deathMessage") != null) {
+                    e.setDeathMessage("");
+
+                    String ms = lCore.getConfig().getString("deathMessage");
+                    String msg = ms.replace("%killer%", killer.getName());
+                    Bukkit.broadcastMessage(ColorUtils.colorize(msg.replace("%victim%", died.getName())));
+                } else {
+                    lCore.getLogger().warning("[LifestealCore] Config value 'deathmessage' was not found, resorting to regular death message.");
+                    lCore.getConfig().set("deathMessage", "%victim% has been killed by %killer%");
+                }
+
             }
 
             hData.addHearts(killer, hearts);

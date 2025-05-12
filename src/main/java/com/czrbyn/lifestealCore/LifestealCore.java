@@ -4,6 +4,7 @@ import com.czrbyn.lifestealCore.config.ConfigHandler;
 import com.czrbyn.lifestealCore.data.HeartsData;
 import com.czrbyn.lifestealCore.listeners.PlayerJoinListener;
 import com.czrbyn.lifestealCore.listeners.PlayerKillDeathListener;
+import com.czrbyn.lifestealCore.listeners.PlayerRespawnListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,6 +16,7 @@ public final class LifestealCore extends JavaPlugin {
 
     private PlayerJoinListener pjl;
     private PlayerKillDeathListener pkdl;
+    private PlayerRespawnListener prl;
 
     @Override
     public void onEnable() {
@@ -41,6 +43,9 @@ public final class LifestealCore extends JavaPlugin {
 
         pkdl = new PlayerKillDeathListener();
         Bukkit.getPluginManager().registerEvents(pkdl, this);
+
+        prl = new PlayerRespawnListener();
+        Bukkit.getPluginManager().registerEvents(prl, this);
     }
 
     public void registerCommands() {
