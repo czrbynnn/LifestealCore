@@ -57,10 +57,12 @@ public final class LifestealCore extends JavaPlugin {
     }
 
     public void registerCommands() {
+        rsc = new ReloadSubCommand();
+
         mcc = new MainCommandClass();
         getCommand("lifestealcore").setExecutor(mcc);
 
-        rsc = new ReloadSubCommand();
+
     }
 
     public static LifestealCore getInstance() {

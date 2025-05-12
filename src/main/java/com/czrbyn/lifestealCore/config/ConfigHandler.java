@@ -17,7 +17,7 @@ public class ConfigHandler {
     }
 
     public void reload() {
-        lCore.saveConfig();
+        lCore.reloadConfig();
         cfg = lCore.getConfig();
     }
 

@@ -31,6 +31,14 @@ public class HeartsData {
 
     }
 
+    public void save() {
+        try {
+            cfg.save(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void reload() {
         f = new File(lCore.getDataFolder(), "hearts.yml");
         cfg = YamlConfiguration.loadConfiguration(f);
@@ -62,6 +70,8 @@ public class HeartsData {
                 e.printStackTrace();
             }
 
+            save();
+
             Objects.requireNonNull(p.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(i * 2);
 
 
@@ -73,6 +83,9 @@ public class HeartsData {
         if ((b - i) > 0) {
             cfg.set(p.getUniqueId() + ".hearts", (b - i));
         }
+
+        save();
+
         Objects.requireNonNull(p.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(cfg.getInt(p.getUniqueId() + ".hearts") * 2);
     }
 
@@ -81,6 +94,9 @@ public class HeartsData {
         if ((b + i) <= 40) {
             cfg.set(p.getUniqueId() + ".hearts", (b + i));
         }
+
+        save();
+
         Objects.requireNonNull(p.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(cfg.getInt(p.getUniqueId() + ".hearts") * 2);
     }
 
