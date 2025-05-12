@@ -1,0 +1,4 @@
+name: LifestealCore
+version: '1'
+main: com.czrbyn.lifestealCore.LifestealCore
+api-version: '1.21'
