@@ -21,6 +21,17 @@ public class ConfigHandler {
         cfg = lCore.getConfig();
     }
 
+    public double getOffset() {
+        if (cfg.get("heartTagOffset") != null) {
+            return cfg.getDouble("heartTagOffset");
+        } else {
+            cfg.set("heartTagOffset", 1.65);
+            lCore.getLogger().warning("[LifestealCore] No value found for heartTagOffset in config, reverting to default 1.65");
+            lCore.saveConfig();
+            return 1.65;
+        }
+    }
+
     public int getMaxHearts() {
         if (cfg.get("maxHearts") != null) {
             return cfg.getInt("maxHearts");

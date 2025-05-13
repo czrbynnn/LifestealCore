@@ -25,9 +25,10 @@ public class PlayerKillDeathListener implements Listener {
     public void pKDListener(PlayerDeathEvent e) {
         if (Objects.requireNonNull(e.getEntity().getLastDamageCause()).getEntityType().equals(EntityType.PLAYER)) {
             Player died = e.getEntity();
+            Player killer = died.getKiller();
 
-            if (died.getLastDamageCause().getEntity() instanceof Player) {
-                Player killer = died.getKiller();
+            if (killer != null) {
+
 
                 if (killer.getUniqueId().equals(died.getUniqueId())) {
                     died.sendMessage(ColorUtils.colorize("&fYou cannot gain hearts from killing yourself."));

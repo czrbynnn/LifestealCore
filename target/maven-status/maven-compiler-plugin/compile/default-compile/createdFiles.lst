@@ -1,9 +1,12 @@
+com\czrbyn\lifestealCore\utils\HeartTagManager.class
 com\czrbyn\lifestealCore\data\HeartsData.class
-com\czrbyn\lifestealCore\listeners\PlayerJoinListener.class
 com\czrbyn\lifestealCore\utils\ColorUtils.class
+com\czrbyn\lifestealCore\listeners\PlayerRespawnListener.class
+com\czrbyn\lifestealCore\LifestealCore.class
+com\czrbyn\lifestealCore\listeners\PlayerMoveListener.class
+com\czrbyn\lifestealCore\listeners\PlayerJoinListener.class
 com\czrbyn\lifestealCore\config\ConfigHandler.class
 com\czrbyn\lifestealCore\commands\MainCommandClass.class
 com\czrbyn\lifestealCore\commands\subcommands\ReloadSubCommand.class
-com\czrbyn\lifestealCore\listeners\PlayerRespawnListener.class
-com\czrbyn\lifestealCore\LifestealCore.class
+com\czrbyn\lifestealCore\listeners\PlayerDamageListener.class
 com\czrbyn\lifestealCore\listeners\PlayerKillDeathListener.class

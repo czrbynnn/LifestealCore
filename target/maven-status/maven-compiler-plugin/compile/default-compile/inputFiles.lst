@@ -3,7 +3,10 @@ C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifeste
 C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\config\ConfigHandler.java
 C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\data\HeartsData.java
 C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\LifestealCore.java
+C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\listeners\PlayerDamageListener.java
 C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\listeners\PlayerJoinListener.java
 C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\listeners\PlayerKillDeathListener.java
+C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\listeners\PlayerMoveListener.java
 C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\listeners\PlayerRespawnListener.java
 C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\utils\ColorUtils.java
+C:\Coding Utils\Minecraft Plugins\LifestealCore\src\main\java\com\czrbyn\lifestealCore\utils\HeartTagManager.java
