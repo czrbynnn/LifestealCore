@@ -40,6 +40,8 @@ public class HeartsData {
     }
 
     public void reload() {
+        save();
+
         f = new File(lCore.getDataFolder(), "hearts.yml");
         cfg = YamlConfiguration.loadConfiguration(f);
 
@@ -64,13 +66,8 @@ public class HeartsData {
     public void setHearts(Player p, int i) {
         if (i <= lCore.getCfgHandler().getMaxHearts()) {
             cfg.set(p.getUniqueId() + ".hearts", i);
-            try {
-               cfg.save(f);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             save();
+
 
             Objects.requireNonNull(p.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(i * 2);
 

@@ -6,6 +6,7 @@ import com.czrbyn.lifestealCore.data.HeartsData;
 import com.czrbyn.lifestealCore.utils.ColorUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,30 +25,47 @@ public class PlayerKillDeathListener implements Listener {
     public void pKDListener(PlayerDeathEvent e) {
         if (Objects.requireNonNull(e.getEntity().getLastDamageCause()).getEntityType().equals(EntityType.PLAYER)) {
             Player died = e.getEntity();
-            Player killer = (Player) died.getLastDamageCause().getEntity();
 
-            int hearts = cH.getHeartsPerKill();
+            if (died.getLastDamageCause().getEntity() instanceof Player) {
+                Player killer = died.getKiller();
 
-            if (hData.getHearts(died) == hearts) {
-                for (String cmd : cH.getFinalDeathCommands()) {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ColorUtils.colorize(cmd.replace("%player%", died.getName())));
-                }
-            } else {
-                hData.removeHearts(died, hearts);
-                if (lCore.getConfig().get("deathMessage") != null) {
-                    e.setDeathMessage("");
-
-                    String ms = lCore.getConfig().getString("deathMessage");
-                    String msg = ms.replace("%killer%", killer.getName());
-                    Bukkit.broadcastMessage(ColorUtils.colorize(msg.replace("%victim%", died.getName())));
+                if (killer.getUniqueId().equals(died.getUniqueId())) {
+                    died.sendMessage(ColorUtils.colorize("&fYou cannot gain hearts from killing yourself."));
                 } else {
-                    lCore.getLogger().warning("[LifestealCore] Config value 'deathmessage' was not found, resorting to regular death message.");
-                    lCore.getConfig().set("deathMessage", "%victim% has been killed by %killer%");
+                    int hearts = cH.getHeartsPerKill();
+
+                    int victimHearts = hData.getHearts(died);
+
+                    if (victimHearts == hearts) {
+                        for (String cmd : cH.getFinalDeathCommands()) {
+                            String parsed = ColorUtils.colorize(cmd.replace("%player%", died.getName()));
+                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), parsed);
+                        }
+                    } else {
+                        hData.removeHearts(died, hearts);
+                        if (lCore.getConfig().get("deathMessage") != null) {
+                            e.setDeathMessage("");
+                            String ms = lCore.getConfig().getString("deathMessage");
+                            String msg = ms.replace("%killer%", killer.getName()).replace("%victim%", died.getName());
+                            Bukkit.broadcastMessage(ColorUtils.colorize(msg));
+                        } else {
+                            lCore.getLogger().warning("[LifestealCore] Config value 'deathMessage' was not found, resorting to regular death message.");
+                            lCore.getConfig().set("deathMessage", "%victim% has been killed by %killer%");
+                        }
+                    }
+
+                    AttributeInstance abi = killer.getAttribute(Attribute.MAX_HEALTH);
+                    if (abi != null) {
+                        hData.addHearts(killer, hearts);
+
+                        int currentKillerHearts = hData.getHearts(killer);
+
+                        abi.setBaseValue(currentKillerHearts * 2.0);
+                    } else {
+                        Bukkit.getLogger().warning("[LifestealCore] Could not get AttributeInstance for killer: " + killer.getName());
+                    }
                 }
-
             }
-
-            hData.addHearts(killer, hearts);
         }
     }
 
